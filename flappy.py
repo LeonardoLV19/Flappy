@@ -15,6 +15,7 @@ from freegames import vector
 
 bird = vector(0, 0)
 balls = []
+puntos = 0
 
 
 def tap(x, y):
@@ -42,6 +43,9 @@ def draw(alive):
     for ball in balls:
         goto(ball.x, ball.y)
         dot(20, 'black')
+    
+    goto(90,170)
+    write(puntos,False, font=('Arial',20,'normal'))
 
     update()
 
@@ -59,6 +63,8 @@ def move():
         balls.append(ball)
 
     while len(balls) > 0 and not inside(balls[0]):
+        global puntos
+        puntos += 1
         balls.pop(0)
 
     if not inside(bird):
